@@ -104,6 +104,7 @@ file, the following options can be overridden:
 - `devMode`: `LARAVEL_ECHO_SERVER_DEBUG`
 - `databaseConfig.redis.host`: `LARAVEL_ECHO_SERVER_REDIS_HOST`
 - `databaseConfig.redis.port`: `LARAVEL_ECHO_SERVER_REDIS_PORT`
+- `databaseConfig.redis.password`: `LARAVEL_ECHO_SERVER_REDIS_PASSWORD`
 
 
 ### Running with SSL
@@ -260,7 +261,8 @@ For example, if you wanted to pass a custom configuration to Redis:
 *A full list of Redis options can be found [here](https://github.com/luin/ioredis/blob/master/API.md#new-redisport-host-options).*
 
 ### SQLite
-With SQLite you may be interested in changing the path where the database is stored:
+
+With SQLite you may be interested in changing the path where the database is stored.
 
 ``` json
 {
@@ -272,7 +274,9 @@ With SQLite you may be interested in changing the path where the database is sto
 }
 ```
 
-***Note: [node-sqlite3](https://github.com/mapbox/node-sqlite3) is required for this database. Please install before using.***
+***Note 1:*** The path is relative to the root of your application, not your system.
+
+***Note 2:*** [node-sqlite3](https://github.com/mapbox/node-sqlite3) is required for this database. Please install before using.
 
 ```
 npm install sqlite3 -g

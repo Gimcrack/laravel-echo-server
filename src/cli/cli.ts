@@ -33,6 +33,12 @@ export class Cli {
         'LARAVEL_ECHO_SERVER_PORT': 'port',
         'LARAVEL_ECHO_SERVER_REDIS_HOST': 'databaseConfig.redis.host',
         'LARAVEL_ECHO_SERVER_REDIS_PORT': 'databaseConfig.redis.port',
+        'LARAVEL_ECHO_SERVER_REDIS_PASSWORD': 'databaseConfig.redis.password',
+        'LARAVEL_ECHO_SERVER_PROTO': 'protocol',
+        'LARAVEL_ECHO_SERVER_SSL_CERT': 'sslCertPath',
+        'LARAVEL_ECHO_SERVER_SSL_KEY': 'sslKeyPath',
+        'LARAVEL_ECHO_SERVER_SSL_CHAIN': 'sslCertChainPath',
+        'LARAVEL_ECHO_SERVER_SSL_PASS': 'sslPassphrase',
     };
 
     /**
@@ -238,14 +244,14 @@ export class Cli {
 
         fs.access(configFile, fs.F_OK, error => {
             if (error) {
-                console.error(colors.error('Error: The config file cound not be found.'));
+                console.error(colors.error('Error: The config file could not be found.'));
 
                 return false;
             }
 
             const options = this.readConfigFile(configFile);
 
-            options.devMode = yargs.argv.dev || options.devMode || false;
+            options.devMode = `${(yargs.argv.dev || options.devMode || false)}` === 'true';
 
             const lockFile = path.join(path.dirname(configFile), path.basename(configFile, '.json') + '.lock');
 
@@ -266,7 +272,7 @@ export class Cli {
 
                                 console.log(colors.yellow('Warning: Closing process ' + lockProcess + ' because you used the \'--force\' option.'));
                             } else {
-                                console.error(colors.error('Error: There is already a server running! Use add the option \'--force\' to stop it and start another one.'));
+                                console.error(colors.error('Error: There is already a server running! Use the option \'--force\' to stop it and start another one.'));
 
                                 return false;
                             }
