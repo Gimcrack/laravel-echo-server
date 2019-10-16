@@ -131,7 +131,7 @@ export class Cli {
                 name: 'database',
                 message: 'Which database would you like to use to store presence channel members?',
                 type: 'list',
-                choices: ['redis', 'sqlite']
+                choices: ['redis']
             }, {
                 name: 'authHost',
                 default: 'http://localhost',

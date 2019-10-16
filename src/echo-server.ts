@@ -21,9 +21,6 @@ export class EchoServer {
         database: 'redis',
         databaseConfig: {
             redis: {},
-            sqlite: {
-                databasePath: '/database/laravel-echo-server.sqlite'
-            }
         },
         devMode: false,
         host: null,
